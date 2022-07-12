@@ -5,8 +5,8 @@ resource "azurerm_resource_group" "APP-JAVA" {
 
 resource "azurerm_kubernetes_cluster" "K8S" {
   name                = "K8S-aks1"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.Saopaulo
+  resource_group_name = azurerm_resource_group.APP-JAVA
   dns_prefix          = "K8S-ks1"
 
   default_node_pool {
