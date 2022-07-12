@@ -20,5 +20,5 @@ Descriçao da arquitetura da  **Figura**, Acima:
 install terraform linux/Debian segue a documentaçao do link
 [INSTALANDO TERRAFORM ](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - [autenticando no azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
-
+- Arquivos de configuraçao terraform no diretorio IaC.
 
