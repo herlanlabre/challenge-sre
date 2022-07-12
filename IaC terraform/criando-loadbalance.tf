@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "APP-JAVA3" {
 
 resource "azurerm_public_ip" "APP-JAVA" {
   name                = "JAVALB"
-  location            = azurerm_resource_group.Saopaulo
+  location            = azurerm_resource_group.example
   resource_group_name = azurerm_resource_group.APP-JAVA
   allocation_method   = "Static"
 }

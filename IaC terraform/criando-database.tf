@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "APP-JAVA2" {
 resource "azurerm_mssql_server" "APP-JAVA" {
   name                         = "javadb"
   resource_group_name          = azurerm_resource_group.APP-JAVA
-  location                     = azurerm_resource_group.Saopaulo
+  location                     = azurerm_resource_group.example
   version                      = "12.0"
   administrator_login          = "java"
   administrator_login_password = "java@123"
