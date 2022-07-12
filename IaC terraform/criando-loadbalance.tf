@@ -1,19 +1,19 @@
-resource "azurerm_resource_group" "APP-JAVA3" {
-  name     = "LB-APP-JAVA"
-  location = "Saopaulo/Brazil"
+resource "azurerm_resource_group" "java-lb" {
+  name     = "JavaLB"
+  location = "westus"
 }
 
-resource "azurerm_public_ip" "APP-JAVA" {
-  name                = "JAVALB"
-  location            = azurerm_resource_group.example
-  resource_group_name = azurerm_resource_group.APP-JAVA
+resource "azurerm_public_ip" "java-lb" {
+  name                = "PublicIPForLB"
+  location            = azurerm_resource_group.java-lb.location
+  resource_group_name = azurerm_resource_group.java-lb.name
   allocation_method   = "Static"
 }
 
-resource "azurerm_lb" "example" {
+resource "azurerm_lb" "java-lb" {
   name                = "TestLoadBalancer"
-  location            = azurerm_resource_group.Saopaulo
-  resource_group_name = azurerm_resource_group.APP-JAVA
+  location            = azurerm_resource_group.java-lb.location
+  resource_group_name = azurerm_resource_group.java.lb.name
 
   frontend_ip_configuration {
     name                 = "PublicIPAddress"
