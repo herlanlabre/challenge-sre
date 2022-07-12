@@ -8,7 +8,7 @@ criado via [draw.io](https://draw.io/) by Herlan Labre - Analista DevOps.
 
 ## Arquitetura APP JAVA
 
-Descriçao da arquitetura da  **Figura**, Acima:
+Descrição da arquitetura da  **Figura**, Acima:
 
 - 1 - O aplicativo cliente de serviço Web é usado para acessar a aplicação.
 - 2 - O cliente se conecta ao aplicativo por meio de uma rede. Pode ser uma rede local em uma máquina ou na Internet.
