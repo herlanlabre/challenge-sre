@@ -14,3 +14,47 @@ Descriçao da arquitetura da  **Figura**, Acima:
 - 2 - O cliente se conecta ao aplicativo por meio de uma rede. Pode ser uma rede local em uma máquina ou na Internet.
 - 3 - O aplicativo JAVA é um conjunto de contêineres do Docker que executam em um cluster do Kubernetes em uma cloud provider da sua escolha. Em geral, mais de uma cópia do aplicativo é implantada e um balanceador de carga é usado para selecionar com qual instância o cliente se comunica. Os contêineres são gerenciados pelo cluster do Kubernetes, que dimensiona automaticamente o número de instâncias.
 - 4 - O aplicativo usa um banco de dados da sua preferencia relacional ou nao relacional para persistência. Todos os dados armazenados são enviados ao banco de dados. Nenhum estado é salvo no cluster do Kubernetes.
+
+## Codigo IaC da arquiterura ultilizando terraform no caso aqui na Cloud AZURE.
+
+install terraform linux/Debian segue a documentaçao do link
+[INSTALANDO TERRAFORM ](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- [autenticando no azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
+## CRIANDO CLUSTER K8S AZURE
+
+```sh
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "West Europe"
+}
+
+resource "azurerm_kubernetes_cluster" "example" {
+  name                = "example-aks1"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  dns_prefix          = "exampleaks1"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_D2_v2"
+  }
+
+  service_principal {
+    client_id     = "00000000-0000-0000-0000-000000000000"
+    client_secret = "00000000000000000000000000000000"
+  }
+}
+
+resource "azurerm_kubernetes_cluster_node_pool" "example" {
+  name                  = "internal"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
+  vm_size               = "Standard_DS2_v2"
+  node_count            = 1
+
+  tags = {
+    Environment = "Production"
+  }
+}
+```
+
