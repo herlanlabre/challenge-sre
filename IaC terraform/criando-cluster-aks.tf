@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "java-app" {
-  name     = "app"
+  name     = "java-app"
   location = "westus"
 }
 
