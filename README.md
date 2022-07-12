@@ -1,6 +1,6 @@
 # challenge-sre
 atividade devops aggrandize
-## _DIAGRAMA ,_
+## _DIAGRAMA , APP JAVA_
 
-![TESTE AGGRANDIZE-Page-2 drawio (1)](https://user-images.githubusercontent.com/86301028/178384218-98b5248a-735e-44d7-960a-37a2cc660367.png)
+![TESTE AGGRANDIZE-Page-2 drawio](https://user-images.githubusercontent.com/86301028/178385715-171c38ff-866b-4be7-a545-0a1b8482ccc8.png)
 
