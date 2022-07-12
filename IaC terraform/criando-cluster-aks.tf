@@ -21,9 +21,9 @@ resource "azurerm_kubernetes_cluster" "K8S" {
   }
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "example" {
+resource "azurerm_kubernetes_cluster_node_pool" "VM" {
   name                  = "internal"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.VM.id
   vm_size               = "Standard_DS2_v2"
   node_count            = 1
 
