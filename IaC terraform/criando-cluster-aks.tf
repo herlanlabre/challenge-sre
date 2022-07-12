@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "APP-JAVA" {
-  name     = "APP-JAVA-resources"
-  location = "Saopaulo/Brazil"
+resource "azurerm_resource_group" "app-java" {
+  name     = "app-java"
+  location = "westus"
 }
 
 resource "azurerm_kubernetes_cluster" "K8S" {
   name                = "K8S-aks1"
-  location            = azurerm_resource_group.example
-  resource_group_name = azurerm_resource_group.APP-JAVA
+  location            = azurerm_resource_group.app-java.location
+  resource_group_name = azurerm_resource_group.app-java.name
   dns_prefix          = "K8S-ks1"
 
   default_node_pool {
@@ -21,9 +21,9 @@ resource "azurerm_kubernetes_cluster" "K8S" {
   }
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "VM" {
+resource "azurerm_kubernetes_cluster_node_pool" "app-java" {
   name                  = "internal"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.VM.id
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.app-java.id
   vm_size               = "Standard_DS2_v2"
   node_count            = 1
 
