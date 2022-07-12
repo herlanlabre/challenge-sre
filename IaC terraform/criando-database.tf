@@ -1,28 +1,23 @@
-resource "azurerm_resource_group" "vote-resource-group" {
-  name     = "vote-resource-group"
+resource "azurerm_resource_group" "db" {
+  name     = "db-java"
   location = "westus"
 }
 
-resource "random_integer" "ri" {
-  min = 10000
-  max = 99999
-}
+resource "azurerm_mssql_server" "db" {
+  name                         = "mssqlserver"
+  resource_group_name          = azurerm_resource_group.db.name
+  location                     = azurerm_resource_group.db.location
+  version                      = "12.0"
+  administrator_login          = "java"
+  administrator_login_password = "java@12345"
+  minimum_tls_version          = "1.2"
 
-resource "azurerm_cosmosdb_account" "vote-cosmos-db" {
-  name                = "tfex-cosmos-db-${random_integer.ri.result}"
-  location            = azurerm_resource_group.vote-resource-group.location
-  resource_group_name = azurerm_resource_group.vote-resource-group.name
-  offer_type          = "Standard"
-  kind                = "GlobalDocumentDB"
-
-  consistency_policy {
-    consistency_level       = "BoundedStaleness"
-    max_interval_in_seconds = 10
-    max_staleness_prefix    = 200
+  azuread_administrator {
+    login_username = "AzureAD Admin"
+    object_id      = "00000000-0000-0000-0000-000000000000"
   }
 
-  geo_location {
-    location          = "westus"
-    failover_priority = 0
+  tags = {
+    environment = "production"
   }
 }
