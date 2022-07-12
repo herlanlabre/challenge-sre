@@ -20,41 +20,5 @@ Descriçao da arquitetura da  **Figura**, Acima:
 install terraform linux/Debian segue a documentaçao do link
 [INSTALANDO TERRAFORM ](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - [autenticando no azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
-## CRIANDO CLUSTER K8S AZURE
 
-```sh
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
-  location = "West Europe"
-}
-
-resource "azurerm_kubernetes_cluster" "example" {
-  name                = "example-aks1"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  dns_prefix          = "exampleaks1"
-
-  default_node_pool {
-    name       = "default"
-    node_count = 1
-    vm_size    = "Standard_D2_v2"
-  }
-
-  service_principal {
-    client_id     = "00000000-0000-0000-0000-000000000000"
-    client_secret = "00000000000000000000000000000000"
-  }
-}
-
-resource "azurerm_kubernetes_cluster_node_pool" "example" {
-  name                  = "internal"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
-  vm_size               = "Standard_DS2_v2"
-  node_count            = 1
-
-  tags = {
-    Environment = "Production"
-  }
-}
-```
 
