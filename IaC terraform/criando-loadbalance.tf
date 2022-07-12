@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "APP-JAVA" {
+resource "azurerm_resource_group" "APP-JAVA3" {
   name     = "LB-APP-JAVA"
   location = "Saopaulo/Brazil"
 }
