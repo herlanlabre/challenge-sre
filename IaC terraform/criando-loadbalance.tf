@@ -13,7 +13,7 @@ resource "azurerm_public_ip" "java-lb" {
 resource "azurerm_lb" "java-lb" {
   name                = "TestLoadBalancer"
   location            = azurerm_resource_group.java-lb.location
-  resource_group_name = azurerm_resource_group.java.lb.name
+  resource_group_name = azurerm_resource_group.java-lb.name
 
   frontend_ip_configuration {
     name                 = "PublicIPAddress"
