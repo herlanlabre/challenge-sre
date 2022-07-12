@@ -3,11 +3,11 @@ resource "azurerm_resource_group" "app-java" {
   location = "westus"
 }
 
-resource "azurerm_kubernetes_cluster" "K8S" {
-  name                = "K8S-aks1"
-  location            = azurerm_resource_group.app-java.location
-  resource_group_name = azurerm_resource_group.app-java.name
-  dns_prefix          = "K8S-ks1"
+resource "azurerm_kubernetes_cluster" "AKS" {
+  name                = "AKS-aks1"
+  location            = azurerm_resource_group.AKS.location
+  resource_group_name = azurerm_resource_group.AKS.name
+  dns_prefix          = "AKSaks1"
 
   default_node_pool {
     name       = "default"
@@ -15,19 +15,22 @@ resource "azurerm_kubernetes_cluster" "K8S" {
     vm_size    = "Standard_D2_v2"
   }
 
-  service_principal {
-    client_id     = "00000000-0000-0000-0000-000000000000"
-    client_secret = "00000000000000000000000000000000"
+  identity {
+    type = "SystemAssigned"
   }
-}
-
-resource "azurerm_kubernetes_cluster_node_pool" "example" {
-  name                  = "internal"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.example.id
-  vm_size               = "Standard_DS2_v2"
-  node_count            = 1
 
   tags = {
     Environment = "Production"
   }
+}
+
+output "client_certificate" {
+  value     = azurerm_kubernetes_cluster.example.kube_config.0.client_certificate
+  sensitive = true
+}
+
+output "kube_config" {
+  value = azurerm_kubernetes_cluster.example.kube_config_raw
+
+  sensitive = true
 }
