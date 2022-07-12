@@ -3,10 +3,10 @@ resource "azurerm_resource_group" "db" {
   location = "westus"
 }
 
-resource "azurerm_mssql_server" "db-java" {
+resource "azurerm_mssql_server" "dbjava" {
   name                         = "mssqlserver"
-  resource_group_name          = azurerm_resource_group.db-java.name
-  location                     = azurerm_resource_group.db-java.location
+  resource_group_name          = azurerm_resource_group.dbjava.name
+  location                     = azurerm_resource_group.dbjava.location
   version                      = "12.0"
   administrator_login          = "java"
   administrator_login_password = "java@12345"
