@@ -1,5 +1,5 @@
-resource "azurerm_resource_group" "example" {
-  name     = "example-resources"
+resource "azurerm_resource_group" "java-app" {
+  name     = "app"
   location = "westus"
 }
 
