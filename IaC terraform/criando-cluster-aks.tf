@@ -1,4 +1,4 @@
-esource "azurerm_resource_group" "app-java" {
+resource "azurerm_resource_group" "app-java" {
   name     = "app-java"
   location = "westus"
 }
