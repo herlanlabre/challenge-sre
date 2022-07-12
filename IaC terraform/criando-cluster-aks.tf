@@ -1,13 +1,13 @@
-resource "azurerm_resource_group" "app-java" {
-  name     = "app-java"
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
   location = "westus"
 }
 
-resource "azurerm_kubernetes_cluster" "K8S" {
-  name                = "K8S-aks1"
-  location            = azurerm_resource_group.K8S.location
-  resource_group_name = azurerm_resource_group.K8S.name
-  dns_prefix          = "K8Saeaks1"
+resource "azurerm_kubernetes_cluster" "example" {
+  name                = "example-aks1"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  dns_prefix          = "exampleaks1"
 
   default_node_pool {
     name       = "default"
