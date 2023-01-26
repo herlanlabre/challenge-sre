@@ -22,4 +22,4 @@ install terraform linux/Debian segue a documentaçao do link
 - [autenticando no azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/azure_cli)
 - Arquivos de configuraçao terraform no diretorio IaC.
 
-Create by by Herlan Labre - Analista DevOps.
+Create by Herlan Labre - Analista DevOps.
